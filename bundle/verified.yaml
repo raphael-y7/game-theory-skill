@@ -1,0 +1,363 @@
+schema_version: 1
+bundle_id: bundle.game-theory-fudenberg-tirole
+book:
+  title: 博弈论(Game Theory)
+  author: 朱·弗登博格(Drew Fudenberg)、让·梯若尔(Jean Tirole), 姚洋校, 黄涛等译
+  source_pack: 人大2015版(诺贝尔经济学奖获得者丛书), ISBN 978-7-300-20993-7
+  baseline_tag: investment-oriented-2026-10-28
+entry:
+  name: game-theory-skill
+  description: 《博弈论》(弗登博格&梯若尔)能力总入口——把行业竞争、公司行为与市场共识问题化为可求解的博弈模型并给出可检验的判断。覆盖16个能力单元(7个已晋级独立入口+9个router能力卡), 收录338条三重验证通过的能力候选与94个原书例题/64个反例边界。当问题落在博弈论投资分析但不确定具体分支时由此进入, 按 intents/keywords 路由到对应能力卡; 每张卡的 B 段(边界)与 A1 段(书中例题)保证判断有出处、不越界。
+  core_principles:
+    - 预测对手行为靠建模找均衡, 不靠外生信念; 先数有效参与人、按时序×信息两维选均衡概念
+    - 合作可持续 ⟺ 未来惩罚损失的贴现和 > 当期背离利得; 期限结构与信息结构与阈值同等重要
+    - 信号可信 ⟺ 信号成本随类型系统性不同(单交叉); 威胁可信 ⟺ 兑现条件下执行仍是自身最优
+    - 声誉价值 = 未来关系租金流 vs 欺骗一次的短期利得; 微小先验×长期限即可支撑威慑
+    - 均衡常常多重, 预测输出区间+稳健度而非点位; 信息结构的微小差异可翻转结论
+  out_of_scope:
+    - 行为金融/投资者情绪建模(本书成书于行为博弈论兴起前, 理性假设需要外部修正)
+    - 具体标的的估值定价(本包提供博弈结构判断, 不替代财务与估值分析)
+    - 反垄断法律分析(现实合谋的法律维度需另行叠加)
+  stop_conditions:
+    - 无法还原博弈规则三要素(竞争变量/时序/信息)时停止, 先补齐建模材料
+    - 收益参数(利润/成本/耐心)完全无法估计时只输出定性区间, 不做数值结论
+    - 现实情形含本书不建模的维度(法律、行为偏差、多物品动态)时明确标注并建议叠加外部框架
+router_entry:
+  name: game-theory-skill-router
+  description: "《博弈论》(弗登博格&梯若尔)全能力路由入口。覆盖16个能力单元: 晋级独立入口7个(合谋与价格战/信号解读/承诺与威慑/竞争格局/时机竞争/品牌与关系资产/声誉与强硬表态), router能力卡9个(行业博弈建模基础/监督与合作纪律/拍卖与竞价/议价与耐用品定价/机制反推与筛选定价/说真话与集体行动/多重均衡与共识/信息结构与共同知识/马尔可夫状态变量)。按 intents/keywords 路由; 338条verified候选全部可经能力卡到达, 每卡带原书例题(A1)与边界(B)。"
+promotion_budget: 8
+capabilities:
+  # ============ 晋级 Skill(7个) ============
+  - capability_id: cap.game-theory.collusion-price-war
+    revision: 1
+    status: active
+    slug: collusion-price-war
+    title: 合谋可持续性与价格战分析
+    importance: critical
+    importance_rationale: BOOK_OVERVIEW投资优先级task-01之首; 候选池最厚(50条verified, 覆盖第4/5章全部合谋机制); 12任务覆盖审计中task-01候选数第一; 价格战/提价持续性是行业分析最高频问题
+    one_liner: 合作可持续 ⟺ 未来惩罚损失的贴现和 > 当期背离利得——用δ阈值、惩罚深度与期限结构三件事判断
+    intents: [判断行业合谋可持续性, 预测价格战触发条件, 评估限产保价联盟稳定性, 解读价格战成因]
+    keywords: [合谋, 卡特尔, 价格战, 默契配合, 涨价函, 限产保价, 行业自律, 临界贴现因子, 触发策略, collusion, price war, tacit coordination, cartel stability]
+    also_read: [cap.game-theory.monitoring-cooperation-discipline, cap.game-theory.competition-pattern-comparative-statics, cap.game-theory.reputation-tough-talk, cap.game-theory.multiple-equilibria-consensus]
+    card: cards/collusion-price-war.md
+    frontmatter:
+      description: >
+        分析行业合谋/价格战可持续性时用; 输入行业价格行为、参与人耐心(δ)、监督结构, 输出合作可持续判断与价格战触发条件。不用: 单次竞争定价(用competition-pattern)、对消费者品牌承诺(用long-run-relationship-assets)。近邻分流: 近邻分流: 已知公共价格信号(如只见市价、Green-Porter型)→本卡触发价格分支; 需审计归因/满秩(信号不可分、谁在背离不可统计)→monitoring-cooperation-discipline; "合并/集中度提升后能否默契守价"归本卡(算δ阈值); 单次提价跟随的方向判断(交叉偏导)→competition-pattern。Trigger: 合谋、卡特尔、价格战、默契配合、涨价函、限产保价、collusion, price war, cartel。
+      tags: [decision, game-theory, competition]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第4章4.2-4.4; 第5章5.1-5.7(定理5.1-5.11, 定理4.1/4.2/4.4)
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过, 排序第1(task-01之首, 候选最厚)
+  - capability_id: cap.game-theory.signal-reading-pbe
+    revision: 1
+    status: active
+    slug: signal-reading-pbe
+    title: 信号解读与动态不完全信息分析
+    importance: critical
+    importance_rationale: 投资优先级task-03; 38条verified; 回购/增发/降价解读直接服务盘面分析; PBE求解程序与分离混同判别式均可执行
+    one_liner: 信号可信 ⟺ 信号成本随类型系统性不同(单交叉)——找成本差; 解读行动=求PBE四件套(类型/策略/信念/反应)
+    intents: [解读公司反常行动的信息含义, 判断信号可信性, 推演市场对公告的解读, 评估口头表态信息量]
+    keywords: [信号, 回购, 增发, 分离均衡, 混同均衡, 完美贝叶斯, 市场解读, 可信信号, signaling, separating equilibrium, pooling, credible signal]
+    also_read: [cap.game-theory.commitment-deterrence-credibility, cap.game-theory.reputation-tough-talk, cap.game-theory.information-structure-common-knowledge]
+    card: cards/signal-reading-pbe.md
+    frontmatter:
+      description: >
+        解读公司反常行动的信息含义时用; 输入行动、类型空间、成本结构, 输出分离/混同判断与市场信念推演。不用: 长期声誉维持(reputation-tough-talk)、完全信息下的可信性(commitment-deterrence)。Trigger: 信号、回购、增发、混同、分离均衡, signaling。
+      tags: [decision, game-theory, signaling]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第6章6.1-6.8; 第8章8.1-8.4(定义8.1-8.6, 定理8.2/8.5)
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过, 排序第2
+  - capability_id: cap.game-theory.commitment-deterrence-credibility
+    revision: 1
+    status: active
+    slug: commitment-deterrence-credibility
+    title: 承诺与威慑可信性分析
+    importance: critical
+    importance_rationale: 投资优先级task-02; 27条verified; 资本开支/回购可信性判断高频; 子博弈完美检验与承诺三要件自成闭环
+    one_liner: 威胁可信 ⟺ 兑现条件真出现时执行它仍是执行者自身最优(子博弈完美); 承诺要有价值必须可观察、不可逆、真的改变对手最优反应
+    intents: [评价威胁可信性, 判断资本开支是承诺还是失误, 评估时间一致性, 判断先动利弊]
+    keywords: [承诺, 威胁, 空洞威胁, 可信性, 子博弈完美, 时间一致性, 先动优势, 战略投资, credible commitment, empty threat, time consistency, strategic investment]
+    also_read: [cap.game-theory.signal-reading-pbe, cap.game-theory.timing-war-attrition-preemption, cap.game-theory.reputation-tough-talk, cap.game-theory.bargaining-durable-pricing]
+    card: cards/commitment-deterrence-credibility.md
+    frontmatter:
+      description: >
+        评价威胁/承诺/资本开支可信性时用; 输入相机计划与收益结构, 输出子博弈完美检验与承诺价值判断。不用: 不完全信息信号(signal-reading)、议价拖延(bargaining-durable)。近邻分流: 有历史先验与剩余期限的长期强硬表态→reputation-tough-talk; 本卡管"兑现条件下是否自洽"的结构检验(首次、无先例、无不可逆动作的放话按空洞威胁处理)。Trigger: 空洞威胁、扩产威胁、可信承诺、资本开支、回购决心, credible commitment。
+      tags: [decision, game-theory, credibility]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第1章1.1.2; 第3章3.1-3.6(定义3.1/3.5, 例3.1); 4.7
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过, 排序第3
+  - capability_id: cap.game-theory.competition-pattern-comparative-statics
+    revision: 1
+    status: active
+    slug: competition-pattern-comparative-statics
+    title: 竞争格局判别与比较静态分析
+    importance: high
+    importance_rationale: task-01/11; 16条verified; 行业分析刚需, 反应曲线+比较静态自成闭环; task-11经补读p-189补强
+    one_liner: 先还原底层博弈规则(竞争变量×时序×信息)再选模型; 反应曲线交点给均衡位置, 交叉偏导符号给比较静态方向
+    intents: [判别行业竞争模式, 求解均衡产量价格, 推演成本需求冲击传导, 判断涨价跟随还是份额争夺]
+    keywords: [古诺, 伯特兰, 霍特林, 竞争格局, 比较静态, 反应曲线, 策略互补, 策略替代, 差异化, Cournot, Bertrand, comparative statics]
+    also_read: [cap.game-theory.collusion-price-war, cap.game-theory.timing-war-attrition-preemption, cap.game-theory.markov-state-variables, cap.game-theory.industry-game-modeling-foundations]
+    card: cards/competition-pattern-comparative-statics.md
+    frontmatter:
+      description: >
+        判别行业竞争格局与冲击后走势时用; 输入竞争变量、时序、成本/需求参数, 输出模型选择、均衡位置与比较静态方向。不用: 时点竞争(timing-war)、合谋持续性(collusion)。近邻分流: "涨价跟随还是份额争夺"的一次性方向判断归本卡(查交叉偏导); 若问"这种涨价/默契能持续多久"→collusion-price-war; 若问"先动手划不划算/对手会不会跟得更狠"(先动博弈与对手反应)→commitment-deterrence-credibility。Trigger: 古诺、伯特兰、成本冲击、差异化定价, Cournot, Bertrand。
+      tags: [decision, game-theory, competition]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第1章1.2-1.3; 12.3(定义12.4-12.6); 4.7
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过, 排序第4
+  - capability_id: cap.game-theory.timing-war-attrition-preemption
+    revision: 1
+    status: active
+    slug: timing-war-attrition-preemption
+    title: 时机竞争：消耗战、抢先与退出分析
+    importance: high
+    importance_rationale: task-02/01; 15条verified; 补贴战/亏损扩张/夕阳退出独立且输出独特(L/F/B三曲线分类谁先退)
+    one_liner: 用L/F/B三曲线分类——环境变好→ε领先即零消耗全胜; 环境变差→大企业先退小企业留守; 无主租金→被竞赛完全耗散
+    intents: [预测消耗战谁先退, 判断补贴战持续性, 预估夕阳行业退出顺序, 评价新品发布时机]
+    keywords: [消耗战, 补贴大战, 烧钱, 抢先, 先发制人, 退出, 夕阳行业, 出清, 租金耗散, war of attrition, preemption, rent dissipation]
+    also_read: [cap.game-theory.commitment-deterrence-credibility, cap.game-theory.competition-pattern-comparative-statics, cap.game-theory.bargaining-durable-pricing]
+    card: cards/timing-war-attrition-preemption.md
+    frontmatter:
+      description: >
+        分析消耗战/补贴战/退出时序时用; 输入L/F/B曲线环境, 输出谁先退、熬多久、租金耗散程度。不用: 议价拉锯(bargaining-durable)、扩产威胁可信性(commitment-deterrence)。Trigger: 消耗战、补贴大战、烧钱、先退, war of attrition。
+      tags: [decision, game-theory, timing]
+    source_evidence:
+      - source_id: src-main-book
+        location: 4.5.1-4.5.3(Ghemawat-Nalebuff, Fudenberg-Tirole 1985); 6.5例6.3; 12.3
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过, 排序第5
+  - capability_id: cap.game-theory.long-run-relationship-assets
+    revision: 1
+    status: active
+    slug: long-run-relationship-assets
+    title: 品牌、平台与长期关系资产评估
+    importance: high
+    importance_rationale: task-01/04; 8条verified但A1/B素材充足(c37-c41,ce21-23); 消费/平台股估值直接可用
+    one_liner: 声誉价值 = 未来关系租金流 vs 欺骗一次的短期利得; 短期方能否观察长期方全部历史并先行行动决定合作可行集
+    intents: [评估品牌溢价真实性, 评估平台信誉资产, 判断供应链关系可持续性, 识别一次性博弈行业]
+    keywords: [品牌, 平台, 信誉, 声誉资产, 复购, 关系专用投资, 质量承诺, 评分系统, brand equity, reputation capital, repeat purchase]
+    also_read: [cap.game-theory.collusion-price-war, cap.game-theory.reputation-tough-talk, cap.game-theory.signal-reading-pbe]
+    card: cards/long-run-relationship-assets.md
+    frontmatter:
+      description: >
+        评估品牌/平台/供应链关系资产价值时用; 输入长期-短期结构、贴现与欺骗短期利得, 输出关系租金估值与可持续性。不用: 同业合谋(collusion)、威慑性声誉(reputation-tough-talk)。Trigger: 品牌溢价、平台信誉、质量承诺, brand equity。
+      tags: [decision, game-theory, valuation]
+    source_evidence:
+      - source_id: src-main-book
+        location: 5.3.1-5.3.3(例5.1/5.2, FKM, Kandori, Ellison)
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过, 排序第6
+  - capability_id: cap.game-theory.reputation-tough-talk
+    revision: 1
+    status: active
+    slug: reputation-tough-talk
+    title: 声誉与强硬表态分析
+    importance: high
+    importance_rationale: task-04; 6条verified候选薄但f-148阈值流程+4案例+6反例支撑成卡; 阈值公式[b/(b+1)]^k独特可算
+    one_liner: 威慑可持续 ⟺ 对手给承诺类型的先验p⁰超过[b/(b+1)]^k; 期限越长阈值几何衰减, 越微小的强硬先验越够用——但无论如何都会说的话零信息
+    intents: [判断管理层强硬表态约束力, 评估威慑可持续期, 识别廉价磋商, 判断多市场威慑放大效应]
+    keywords: [声誉, 强硬表态, 死磕, 威慑, 连锁店悖论, 承诺类型, 廉价磋商, 先验阈值, reputation, tough talk, chain-store paradox, cheap talk]
+    also_read: [cap.game-theory.signal-reading-pbe, cap.game-theory.commitment-deterrence-credibility, cap.game-theory.long-run-relationship-assets]
+    card: cards/reputation-tough-talk.md
+    frontmatter:
+      description: >
+        判断管理层强硬表态的约束力时用; 输入先验p⁰、期限k、阈值[b/(b+1)]^k, 输出表态可信期与廉价磋商判别。不用: 单次行动信号(signal-reading)、正面品牌资产(long-run-relationship-assets)。近邻分流: 首次出现、无先例的强硬放话且无任何可观察不可逆动作→按空洞威胁走commitment-deterrence; 有历史先验(市场已给强硬类型概率)与明确剩余期限→本卡算阈值。Trigger: 死磕到底、绝不降价、强硬表态、声誉威慑, tough talk, reputation。
+      tags: [decision, game-theory, reputation]
+    source_evidence:
+      - source_id: src-main-book
+        location: 9.1-9.4(定理9.1, 连锁店悖论); 8.2.2例8.1; 1.2.4(廉价磋商)
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过, 排序第7; 候选薄是预算内取舍, 素材充足
+  # ============ Router 能力卡(9个) ============
+  - capability_id: cap.game-theory.industry-game-modeling-foundations
+    revision: 1
+    status: active
+    slug: industry-game-modeling-foundations
+    title: 行业博弈建模与预测基础
+    importance: high
+    importance_rationale: 全部任务的前置入口(38条verified); 但意图泛、无独立输出物, 作router卡被引用更合适; DIGEST总论中呈现
+    one_liner: 先数有效参与人、把局势写成扩展式, 按时序×信息两维选均衡概念; 只凭大家都不笨推不出唯一点——输出区间+稳健度
+    intents: [行业博弈建模, 选择均衡概念, 判断博弈工具适用性, 评估预测稳健性]
+    keywords: [博弈建模, 参与人, 策略式, 扩展式, 均衡概念, 纳什均衡, 可理性化, 重复剔除, 预测区间, game modeling, rationalizability]
+    also_read: [cap.game-theory.competition-pattern-comparative-statics, cap.game-theory.multiple-equilibria-consensus, cap.game-theory.information-structure-common-knowledge]
+    card: cards/industry-game-modeling-foundations.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 引言; 第1章1.1-1.3; 第2章2.1; 3.3-3.4
+    promotion:
+      destination: router
+      gate: {independent_intent: false, independent_contract: false, independent_run: false, independent_reuse: true, independent_eval: false}
+      notes: 意图最泛, 契约无独立输出物; 作为全书入口路由
+  - capability_id: cap.game-theory.monitoring-cooperation-discipline
+    revision: 1
+    status: active
+    slug: monitoring-cooperation-discipline
+    title: 监督结构与合作纪律
+    importance: medium
+    importance_rationale: task-01/12深化层(13条verified); 意图与U3高度重叠, 单独触发场景少; 作为U3的信息结构前置检查层
+    one_liner: 偏离若不可统计归因就不可惩罚——先查公共信号能否区分谁在背离、是背离还是冲击, 再谈δ阈值
+    intents: [审计行业信息透明度, 检查监督结构可归因性, 诊断高频考核失败, 评估信息披露改动影响]
+    keywords: [信息透明度, 监督, 公共信号, 满秩, 归因, 背离检测, 监控频率, 合伙困境, monitoring, attribution, information quality]
+    also_read: [cap.game-theory.collusion-price-war, cap.game-theory.information-structure-common-knowledge, cap.game-theory.truthful-mechanisms-collective-action]
+    card: cards/monitoring-cooperation-discipline.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 5.5-5.7(FLM定理5.11, APM, Kandori信息变差)
+    promotion:
+      destination: router
+      gate: {independent_intent: false, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 意图与U3重叠, 判router; U3卡E段步骤10转接本卡
+  - capability_id: cap.game-theory.auctions-bidding
+    revision: 1
+    status: active
+    slug: auctions-bidding
+    title: 拍卖与竞价分析
+    importance: medium
+    importance_rationale: task-05(投资优先级第4); 19条verified五判据全过但预算7已满; 调用频率(仅拍卖场景)低于U5/U9, 按方法论降router——这是预算约束取舍非能力不足
+    one_liner: 一价拍卖往下压(赢率损失与省下的钱相抵), 二价按真实估价报(优势策略); 保留价必然高于卖方自用价值, 流拍可能是设计而非不值钱
+    intents: [参与拍卖出价决策, 解读卖方保留价与机制, 比较拍卖制度, 判断流拍原因]
+    keywords: [拍卖, 竞价, 出价, 保留价, 一级价格, 二级价格, 收入等价, 虚拟价值, 招拍挂, auction, bid, reserve price, revenue equivalence]
+    also_read: [cap.game-theory.mechanism-reverse-engineering, cap.game-theory.bargaining-durable-pricing, cap.game-theory.signal-reading-pbe]
+    card: cards/auctions-bidding.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 6.5例6.4-6.6; 7.1.2; 7.5.1(收入等价, 虚拟价值); 1.1.3例1.2
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过但预算内排序第8(调用频率不及U5/U9); 用户如需可replan-output提升
+  - capability_id: cap.game-theory.bargaining-durable-pricing
+    revision: 1
+    status: active
+    slug: bargaining-durable-pricing
+    title: 议价、交易破裂与耐用品定价
+    importance: high
+    importance_rationale: task-06/07合并单元(26条verified); 议价份额公式与科斯猜想都有独立可算交付物; 意图分裂致契约宽, 预算内排第10
+    one_liner: 份额由相对耐心决定(可算); 双边私人信息+预算平衡下部分互利交易必然破裂(v-c≥1/4); 无承诺+理性前瞻⇒定价力量被科斯逻辑侵蚀
+    intents: [核算谈判份额, 判断交易破裂的结构性原因, 解读持续降价与去库存, 评估租赁与长期合同]
+    keywords: [议价, 谈判, 出价还价, 份额, 科斯猜想, 耐用品, 租赁, 去库存, 棘轮效应, 交易破裂, bargaining, Coase, durable goods, ratchet]
+    also_read: [cap.game-theory.commitment-deterrence-credibility, cap.game-theory.mechanism-reverse-engineering, cap.game-theory.timing-war-attrition-preemption]
+    card: cards/bargaining-durable-pricing.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 4.4(鲁宾斯坦恩-斯塔尔); 7.4.4/7.5.2(MS); 第10章(科斯猜想); 7.6.4(棘轮)
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: false, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 两task合并致意图分裂, 卡内分两节(议价份额/科斯侵蚀)
+  - capability_id: cap.game-theory.mechanism-reverse-engineering
+    revision: 1
+    status: active
+    slug: mechanism-reverse-engineering
+    title: 机制反推与筛选定价
+    importance: medium
+    importance_rationale: task-09第8位(36条verified); 意图独立但触发词与U11/U10重叠, 排第9
+    one_liner: 制度是设计者最优化的解——翻译成(x,t,θ)→显示原理化简→识别IR/IC紧约束→信息租金决定扭曲结构(高端无扭曲/低端缩量)
+    intents: [反推薪酬合同与返点政策意图, 解读版本划分与差别定价, 判断规则在筛选什么类型, 识别棘轮效应]
+    keywords: [机制设计, 筛选, 信息租金, 非线性定价, 版本划分, 价格歧视, 薪酬合同, 显示原理, 棘轮, screening, mechanism design, information rent]
+    also_read: [cap.game-theory.auctions-bidding, cap.game-theory.bargaining-durable-pricing, cap.game-theory.truthful-mechanisms-collective-action]
+    card: cards/mechanism-reverse-engineering.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 第7章7.0-7.3(显示原理, 紧约束, 包络定理); 7.6.4(棘轮)
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 五判据全过, 预算内排序第9
+  - capability_id: cap.game-theory.truthful-mechanisms-collective-action
+    revision: 1
+    status: active
+    slug: truthful-mechanisms-collective-action
+    title: 说真话机制与集体行动
+    importance: medium
+    importance_rationale: task-09(13条verified); 意图偏理论化, 投资直接触发少; 但"股东监督为何失败"是独特出口
+    one_liner: 人多时方向相反——私人品市场近似有效(谎报无利可图), 公共品集体行动必然供给不足(关键人物概率归零); 说真话靠关键人物付费或类型相关交叉验证
+    intents: [诊断集体行动失败, 设计说真话机制, 判断公共投入融资需求, 解释搭便车现象]
+    keywords: [搭便车, 集体行动, 公共品, 说真话, 格罗夫斯机制, 预算平衡, 股东监督, 行业自律, free-rider, collective action, Groves]
+    also_read: [cap.game-theory.mechanism-reverse-engineering, cap.game-theory.monitoring-cooperation-discipline]
+    card: cards/truthful-mechanisms-collective-action.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 7.4.1-7.4.6(Groves/AGV, Rob-Mailath-Postlewaite); 2.2(相关均衡)
+    promotion:
+      destination: router
+      gate: {independent_intent: false, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 意图理论化, router; 股东集体行动问题由此卡承接
+  - capability_id: cap.game-theory.multiple-equilibria-consensus
+    revision: 1
+    status: active
+    slug: multiple-equilibria-consensus
+    title: 多重均衡与共识稳定性
+    importance: medium
+    importance_rationale: task-08第9位(22条verified); "两个均衡间跳"的分析最终落在具体场景, 独立意图成立但多为组合调用
+    one_liner: 多重均衡下预测=区间而非点位, 实现靠协调机制(聚点/公共信号/惯例); 参数跨临界值均衡可无中生有, 信念解读分裂则共识瓦解
+    intents: [诊断共识稳定性, 预判市场好坏均衡切换, 找共识锚, 评估协调失败风险]
+    keywords: [多重均衡, 协调, 聚点, 太阳黑子, 共识, 均衡选择, 协调失败, 风格切换, multiple equilibria, focal point, tipping]
+    also_read: [cap.game-theory.industry-game-modeling-foundations, cap.game-theory.information-structure-common-knowledge, cap.game-theory.collusion-price-war]
+    card: cards/multiple-equilibria-consensus.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 1.2.4-1.2.5(聚点, 猎鹿); 2.2(相关均衡); 3.6.2; 8.3.2-8.3.3; 14.3.4
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: false, independent_eval: true}
+      notes: 独立意图成立但组合调用为主, 预算内排第11
+  - capability_id: cap.game-theory.information-structure-common-knowledge
+    revision: 1
+    status: active
+    slug: information-structure-common-knowledge
+    title: 信息结构敏感性与共同知识
+    importance: medium
+    importance_rationale: task-12第12位(8条verified); 意图学术化(共同知识层级), 投资场景主要作分析透镜而非独立任务
+    one_liner: 公共信号只在既有均衡间协调, 私人相关信号才创造新均衡; 近似共同知识与确定共同知识的均衡集不同——多级确认救不了信道噪声
+    intents: [评估披露对均衡的冲击, 判断信息链协调可靠性, 识别层级升格效应, 检测市场结构异常]
+    keywords: [共同知识, 信息结构, 公共信号, 层级, 近似共同知识, 无交易定理, 泡沫, 邮件博弈, common knowledge, disclosure, no-trade]
+    also_read: [cap.game-theory.signal-reading-pbe, cap.game-theory.multiple-equilibria-consensus, cap.game-theory.monitoring-cooperation-discipline]
+    card: cards/information-structure-common-knowledge.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 2.2(相关均衡); 第14章14.2-14.4(脏脸, 邮件博弈, 无交易定理)
+    promotion:
+      destination: router
+      gate: {independent_intent: false, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 透镜型, router
+  - capability_id: cap.game-theory.markov-state-variables
+    revision: 1
+    status: active
+    slug: markov-state-variables
+    title: 马尔可夫状态变量
+    importance: low
+    importance_rationale: task-10(3条verified, 补读后); "盯哪几个变量"依附具体跟踪场景(U2/U3), 契约薄
+    one_liner: 状态变量须同时满足概括历史/收益依存/马尔可夫演化/最小充分划分; 换一套状态集=换一个均衡集, 警惕弱相关变量的大权力
+    intents: [设计行业跟踪清单, 判断哪些历史可忽略, 审查简化模型被扔掉的变量]
+    keywords: [状态变量, 马尔可夫, MPE, 跟踪指标, 历史压缩, state variable, Markov, tracking]
+    also_read: [cap.game-theory.competition-pattern-comparative-statics, cap.game-theory.collusion-price-war]
+    card: cards/markov-state-variables.md
+    source_evidence:
+      - source_id: src-main-book
+        location: 13.1-13.2(定义13.1/13.3-13.5); 13.2.3
+    promotion:
+      destination: router
+      gate: {independent_intent: false, independent_contract: false, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 契约薄(3条候选), 依附跟踪场景; 五判据①②不过

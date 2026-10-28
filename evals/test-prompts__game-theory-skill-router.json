@@ -1,0 +1,160 @@
+{
+ "skill": "game-theory-router",
+ "version": "1.0",
+ "test_cases": [
+  {
+   "id": "route-U01",
+   "type": "should_trigger",
+   "prompt": "刚接手研究一个行业，想知道该不该用博弈论、该从哪几个决策主体和规则开始搭框架？",
+   "expected_behavior": "路由到 industry-game-modeling-foundations",
+   "notes": "通用入口: 适用性判断、有效参与人计数与均衡概念二维定位(U1核心意图)"
+  },
+  {
+   "id": "route-U02",
+   "type": "should_trigger",
+   "prompt": "两家龙头主要拼产能，如果明年成本再降一成，行业价格和利润会往哪走？",
+   "expected_behavior": "路由到 competition-pattern-comparative-statics",
+   "notes": "一次性竞争的均衡位置与成本冲击传导(U2核心意图)"
+  },
+  {
+   "id": "route-U03",
+   "type": "should_trigger",
+   "prompt": "三家大厂连续两年维持高价，最近还发了涨价函，这种价格默契还能撑多久？",
+   "expected_behavior": "路由到 collusion-price-war",
+   "notes": "重复互动中合作可持续性与价格战触发条件(U3核心意图)"
+  },
+  {
+   "id": "route-U04",
+   "type": "should_trigger",
+   "prompt": "行业只公布月度总产量、不公布各家明细，这种数据透明度能支撑企业间的价格纪律吗？",
+   "expected_behavior": "路由到 monitoring-cooperation-discipline",
+   "notes": "公共信号可归因性、监督结构与合作纪律(U4核心意图)"
+  },
+  {
+   "id": "route-U05",
+   "type": "should_trigger",
+   "prompt": "这家消费公司品牌溢价很高、复购率也高，这个品牌资产到底值多少钱、能自我维持吗？",
+   "expected_behavior": "路由到 long-run-relationship-assets",
+   "notes": "一长期对众短期的质量声誉与关系资产估值(U5核心意图)"
+  },
+  {
+   "id": "route-U06",
+   "type": "should_trigger",
+   "prompt": "对手放话说我们只要扩产，他就把价格打到成本线以下，这个威胁到底可不可信？",
+   "expected_behavior": "路由到 commitment-deterrence-credibility",
+   "notes": "完全信息下威胁/承诺的子博弈完美检验(U6核心意图)"
+  },
+  {
+   "id": "route-U07",
+   "type": "should_trigger",
+   "prompt": "社区团购已经烧钱三年，几家平台谁先扛不住退出，还要熬多久？",
+   "expected_behavior": "路由到 timing-war-attrition-preemption",
+   "notes": "消耗战退出顺序、退出时点与租金耗散(U7核心意图)"
+  },
+  {
+   "id": "route-U08",
+   "type": "should_trigger",
+   "prompt": "公司在股价低位突然宣布大额回购，管理层想传递什么信息，市场会怎么解读？",
+   "expected_behavior": "路由到 signal-reading-pbe",
+   "notes": "单次行动的类型信息与完美贝叶斯解读(U8核心意图)"
+  },
+  {
+   "id": "route-U09",
+   "type": "should_trigger",
+   "prompt": "龙头管理层放话对新进入者死磕到底，这种强硬名声能吓退挑战者多久？",
+   "expected_behavior": "路由到 reputation-tough-talk",
+   "notes": "强硬类型先验×期限的威慑性声誉(U9核心意图)"
+  },
+  {
+   "id": "route-U10",
+   "type": "should_trigger",
+   "prompt": "参与一块工业地的招拍挂，只有三家竞买人，我该怎么报价？卖方设的底价又说明什么？",
+   "expected_behavior": "路由到 auctions-bidding",
+   "notes": "拍卖报价策略与卖方保留价/机制解读(U10核心意图)"
+  },
+  {
+   "id": "route-U11",
+   "type": "should_trigger",
+   "prompt": "并购谈判谈了大半年还没成交，双方都说自己底价很硬，这笔交易为什么谈不拢？",
+   "expected_behavior": "路由到 bargaining-durable-pricing",
+   "notes": "议价份额、底价表态与交易破裂的结构性原因(U11核心意图)"
+  },
+  {
+   "id": "route-U12",
+   "type": "should_trigger",
+   "prompt": "公司给经销商设了五档返点，还按销量分不同价格档，这套政策到底在筛选什么类型的经销商？",
+   "expected_behavior": "路由到 mechanism-reverse-engineering",
+   "notes": "从规则形状反推筛选类型、紧约束与信息租金(U12核心意图)"
+  },
+  {
+   "id": "route-U13",
+   "type": "should_trigger",
+   "prompt": "行业里几家企业喊了三年联合减产，谁都不肯先动，这种集体行动为什么总组织不起来？",
+   "expected_behavior": "路由到 truthful-mechanisms-collective-action",
+   "notes": "公共品搭便车、关键人物概率与集体行动失败(U13核心意图)"
+  },
+  {
+   "id": "route-U14",
+   "type": "should_trigger",
+   "prompt": "这个行业的需求和盈利会在高景气与价格战两个状态间切换，市场共识靠什么锚定，什么时候会突然反转？",
+   "expected_behavior": "路由到 multiple-equilibria-consensus",
+   "notes": "多重均衡、聚点锚定与共识稳定性(U14核心意图)"
+  },
+  {
+   "id": "route-U15",
+   "type": "should_trigger",
+   "prompt": "一条行业传闻经过好几层渠道转发，每层都可能失真，这种信息链还能不能协调市场行为？",
+   "expected_behavior": "路由到 information-structure-common-knowledge",
+   "notes": "共同知识层级、信道噪声与信息结构对均衡的冲击(U15核心意图)"
+  },
+  {
+   "id": "route-U16",
+   "type": "should_trigger",
+   "prompt": "我想给这个行业做长期跟踪，历史数据太多，到底哪几个变量是真正必须盯的？",
+   "expected_behavior": "路由到 markov-state-variables",
+   "notes": "最小充分状态变量与行业跟踪清单(U16核心意图)"
+  },
+  {
+   "id": "should-not-trigger-01",
+   "type": "should_not_trigger",
+   "prompt": "帮我查一下这个HTTP接口返回401该怎么排查",
+   "expected_behavior": "不路由到任何博弈论能力; 这是接口调试问题",
+   "notes": "完全无关: API调试"
+  },
+  {
+   "id": "should-not-trigger-02",
+   "type": "should_not_trigger",
+   "prompt": "帮我写一段Python脚本，把CSV里的空值填掉",
+   "expected_behavior": "不路由到任何博弈论能力; 这是编程任务",
+   "notes": "完全无关: 写代码"
+  },
+  {
+   "id": "should-not-trigger-03",
+   "type": "should_not_trigger",
+   "prompt": "明天上海会下雨吗，出门要不要带伞、穿什么衣服",
+   "expected_behavior": "不路由到任何博弈论能力; 这是天气查询",
+   "notes": "完全无关: 天气"
+  },
+  {
+   "id": "should-not-trigger-04",
+   "type": "should_not_trigger",
+   "prompt": "帮我推荐几家公司附近适合晚上团队聚餐的餐厅",
+   "expected_behavior": "不路由到任何博弈论能力; 这是生活服务查询",
+   "notes": "完全无关: 餐厅推荐"
+  },
+  {
+   "id": "edge-01",
+   "type": "edge_case",
+   "prompt": "帮我用博弈论分析一下储能行业，看看竞争格局和投资机会。",
+   "expected_behavior": "路由到路由入口自身(game-theory-router)或 industry-game-modeling-foundations; 先补建模材料(参与人/竞争变量/时序/信息)再分派, 不直接跳到具体能力卡",
+   "notes": "泛泛请求: 缺少具体决策问题, 由入口承接并追问"
+  },
+  {
+   "id": "edge-02",
+   "type": "edge_case",
+   "prompt": "我想系统学一下怎么用博弈论看行业竞争，从哪开始？",
+   "expected_behavior": "路由到路由入口自身, 先给能力地图与建模基础, 再按用户补充的具体问题分派",
+   "notes": "元问题/学习路径: 由入口承接"
+  }
+ ]
+}

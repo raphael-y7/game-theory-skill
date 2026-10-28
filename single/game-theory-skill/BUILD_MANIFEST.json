@@ -1,0 +1,46 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\auctions-bidding.md": "f5fc7ec97507250d369ff554c024b8ee65ecd1b2afe63beb421060a7361d0fde",
+    "references\\capabilities\\bargaining-durable-pricing.md": "960342cfcc346fb43fbffd17c753c69e631e6d533813bba832723c0d5aec670d",
+    "references\\capabilities\\collusion-price-war.md": "9cebd4b21e59c7cfd0dfb133577c7f6996a5fe84f6da2d12550791c2b4fe0bac",
+    "references\\capabilities\\commitment-deterrence-credibility.md": "6b243bce354f78706ffa820c10daac889d7c0a9ea7b9b31355cee2b9d49fb83d",
+    "references\\capabilities\\competition-pattern-comparative-statics.md": "6834bd2f84424559fd5aee85c0a1473cab6f2f39ef694a7702926d43ca750ae0",
+    "references\\capabilities\\industry-game-modeling-foundations.md": "37c840d85b511b5a1eb5d7a8e3fdc5d065268e0c39594d277e32be60b264e01d",
+    "references\\capabilities\\information-structure-common-knowledge.md": "87e8a2ad49e765ece3c0851c32ed89e6b2002865715e56b0d0aedf7afd1888ec",
+    "references\\capabilities\\long-run-relationship-assets.md": "60e0586eec19d34c74675e672902ad87f9ee22019f19809678b3926bafe7fa4e",
+    "references\\capabilities\\markov-state-variables.md": "62c0581777292ca174b0f7312a1a145c4fa95d6375daf1417f9bf652fd7f3568",
+    "references\\capabilities\\mechanism-reverse-engineering.md": "edabaca7d4f9f7e003ff0e4da2e5b0bf6aa693bfeb0f264d306df01d59052f54",
+    "references\\capabilities\\monitoring-cooperation-discipline.md": "92f3ccbf5c2ac63393500bb62dbe126a9f8afb1279b391d22fa6dce3bb724b31",
+    "references\\capabilities\\multiple-equilibria-consensus.md": "976d516f5a77e361d1a048029f311a75055182bebe376f7b3b92fe95188c5b61",
+    "references\\capabilities\\reputation-tough-talk.md": "752efc4f0e67221b54e8a5ec057141c469754606fb240115221346e5837fed54",
+    "references\\capabilities\\signal-reading-pbe.md": "edbc3b0b8d7a29fffe15cd90f3360b80cff54e2940b51ca13f1a395c73a5593e",
+    "references\\capabilities\\timing-war-attrition-preemption.md": "d37a91bbad955a2195ab2a6326bd50ad5ab916ed808c1396617fd93064c48d68",
+    "references\\capabilities\\truthful-mechanisms-collective-action.md": "f428b4504478061ba284ba44027ec576a68ada033d1161b1fc1af7ab0ef836a5",
+    "references\\capability-index.md": "53f41c75201fc321a523952266415f2c55432fbd1b82e89975252b4e514dc394",
+    "references\\cheatsheet.md": "ce7f5a0783408d2d739e5885e1a9a9ab46bafcac76cc9965b3e69126013920e9",
+    "references\\glossary.md": "5681594bf051f615d70a6b51e3ed8fecfcd67e28e4f94c188f0a171e717752c0",
+    "references\\overview.md": "24ddcc6555559e108b43843885224b090105d61bf1a2f57dfc6cd4f7ed8cdaf2",
+    "SKILL.md": "b9dec828e3580f6abec08858a606617e8567be18d156fd98e249e64ae90824b4"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.game-theory-fudenberg-tirole",
+  "bundle_sha256": "04823931370f57fd125809468a22828aba60f7218e9bf19e350eab11f2aa83ca",
+  "variant": "single",
+  "run_id": "run-20261028-211607-09c424",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 7,
+    "capability_count": 16,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 7 个晋级 Skill，共 8 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

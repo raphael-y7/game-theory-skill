@@ -1,0 +1,73 @@
+{
+  "generated_by": "cangjie-tools v2.5.0",
+  "bundle_id": "bundle.game-theory-fudenberg-tirole",
+  "router_entrypoint": "game-theory-skill-router",
+  "entrypoint_count": 8,
+  "capability_count": 16,
+  "destinations": {
+    "cap.game-theory.collusion-price-war": {
+      "promoted_to": "collusion-price-war",
+      "router_view": "game-theory-skill-router/references/capabilities/collusion-price-war.md"
+    },
+    "cap.game-theory.signal-reading-pbe": {
+      "promoted_to": "signal-reading-pbe",
+      "router_view": "game-theory-skill-router/references/capabilities/signal-reading-pbe.md"
+    },
+    "cap.game-theory.commitment-deterrence-credibility": {
+      "promoted_to": "commitment-deterrence-credibility",
+      "router_view": "game-theory-skill-router/references/capabilities/commitment-deterrence-credibility.md"
+    },
+    "cap.game-theory.competition-pattern-comparative-statics": {
+      "promoted_to": "competition-pattern-comparative-statics",
+      "router_view": "game-theory-skill-router/references/capabilities/competition-pattern-comparative-statics.md"
+    },
+    "cap.game-theory.timing-war-attrition-preemption": {
+      "promoted_to": "timing-war-attrition-preemption",
+      "router_view": "game-theory-skill-router/references/capabilities/timing-war-attrition-preemption.md"
+    },
+    "cap.game-theory.long-run-relationship-assets": {
+      "promoted_to": "long-run-relationship-assets",
+      "router_view": "game-theory-skill-router/references/capabilities/long-run-relationship-assets.md"
+    },
+    "cap.game-theory.reputation-tough-talk": {
+      "promoted_to": "reputation-tough-talk",
+      "router_view": "game-theory-skill-router/references/capabilities/reputation-tough-talk.md"
+    },
+    "cap.game-theory.industry-game-modeling-foundations": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/industry-game-modeling-foundations.md"
+    },
+    "cap.game-theory.monitoring-cooperation-discipline": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/monitoring-cooperation-discipline.md"
+    },
+    "cap.game-theory.auctions-bidding": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/auctions-bidding.md"
+    },
+    "cap.game-theory.bargaining-durable-pricing": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/bargaining-durable-pricing.md"
+    },
+    "cap.game-theory.mechanism-reverse-engineering": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/mechanism-reverse-engineering.md"
+    },
+    "cap.game-theory.truthful-mechanisms-collective-action": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/truthful-mechanisms-collective-action.md"
+    },
+    "cap.game-theory.multiple-equilibria-consensus": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/multiple-equilibria-consensus.md"
+    },
+    "cap.game-theory.information-structure-common-knowledge": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/information-structure-common-knowledge.md"
+    },
+    "cap.game-theory.markov-state-variables": {
+      "served_by": "game-theory-skill-router",
+      "card": "game-theory-skill-router/references/capabilities/markov-state-variables.md"
+    }
+  }
+}
