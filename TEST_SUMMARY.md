@@ -1,29 +1,32 @@
 # Stage 4 压力测试摘要
 
-> 本文件汇总《博弈论》（弗登博格、梯若尔）skill 包在 cangjie-skill 流水线阶段 4 的测试资产与结果。原始材料见 `evals/`（8 份触发用例 + `test-results.md`）与各 skill 目录下的 `test-prompts.json`。数据来源：`evals/test-results.md`、`evals/test-prompts__*.json`、`审计过程/PIPELINE_STATE.md`。
+> 本文件汇总《博弈论》（弗登博格、梯若尔）skill 包在 cangjie-skill 流水线阶段 4 的测试资产与结果。测试材料随 skill 一起发布——触发用例见各 skill 目录下的 `test-prompts.json`，逐项评分记录见仓库根目录的 [`test-results.md`](./test-results.md)。本文件的统计数字均为 2026-10-29 对本仓库的实测结果；历史测试结论（盲测通过率等）沿用 `test-results.md` 的原始记录。
 
 ## 测试范围
 
-- **能力单元**：16 个（7 个晋级独立入口 + 9 张 router 能力卡），编译为两种形态——`single/` 1 个入口（16 张卡全部在入口的 `references/capabilities/` 内）、`pack/` 8 个入口（1 个来源路由入口 + 7 个晋级独立 skill）。
-- **test-prompts 文件**：17 份。`evals/` 下 8 份（`test-prompts__<slug>.json`，按能力一份）+ 9 份随 skill 放置的副本（`pack/<slug>/test-prompts.json` ×8、`single/game-theory-skill/test-prompts.json` ×1，与 `evals/` 同名文件逐字节一致）。
-- **用例总数**：85 条（去重后），覆盖三类：
-  - `should_trigger`（应触发）51 条——7 个晋级能力各 5 条 + 入口路由 16 条，取自投资者真实口吻的问题；
-  - `should_not_trigger`（诱饵，零容忍）25 条——7 个晋级能力各 3 条 + 入口路由 4 条（含跨 skill 近邻负例与无关场景）；
-  - `edge_case`（边界）9 条——7 个晋级能力各 1 条 + 入口路由 2 条（前提缺失、泛化场景等）。
-- **关于 `output_case`**：用例 JSON 中**没有** `output_case` 这个 type，`type` 取值仅上述三种。输出评测不走 test-prompts，而以"16 个能力各 1 个代表任务"的形式单独执行，产物为 `evals/outputs/<slug>/output.md` 16 份（**这 16 份输出留在归档目录 `审计过程/evals/outputs/`，未纳入本仓库**），结果记录在 `evals/test-results.md` 第 3 节。
+- **能力单元**：16 个（7 个晋级独立入口 + 9 张 router 能力卡），编译为两种形态——`single/` 1 个入口（16 张卡全部在入口的 `references/capabilities/` 内）、`pack/` 8 个入口（1 个来源路由入口 + 7 个晋级独立 skill）。与 `bundle/verified.yaml` 的 `capabilities` 条目数（16）一致。
+- **test-prompts 文件**：**9 份**（实测）。构成：`pack/<slug>/test-prompts.json` × 7（7 个晋级 skill）、`pack/game-theory-skill-router/test-prompts.json` × 1、`single/game-theory-skill/test-prompts.json` × 1。
+- **用例总数**：**107 条**（各文件 `test_cases` 长度之和：7 × 9 + 22 + 22）。按 `type` 分：
+  - `should_trigger`（应触发）**67 条**——7 个晋级能力各 5 条 + 入口路由 16 条，取自投资者真实口吻的问题；
+  - `should_not_trigger`（诱饵，零容忍）**29 条**——7 个晋级能力各 3 条 + 入口路由 4 条（含跨 skill 近邻负例与无关场景）；
+  - `edge_case`（边界）**11 条**——7 个晋级能力各 1 条 + 入口路由 2 条（前提缺失、泛化场景等）；
+  - `output_case` **0 条**——用例 JSON 中**没有**这个 type，`type` 取值仅上述三种。
+- **去重口径**：`single/game-theory-skill/test-prompts.json` 与 `pack/game-theory-skill-router/test-prompts.json` 逐字节相同（同一份 22 条路由用例，在两个构建里各放一份）。去重后为 **85 条**（7 个晋级能力 63 条 + 入口路由 22 条），下文"结果"一节的历史记录沿用这个 85 条口径。
+- **关于输出评测**：输出评测不走 test-prompts，而以"16 个能力各 1 个代表任务"的形式单独执行，16 份 `output.md` 留在归档目录（**未纳入本仓库**），结果记录在 `test-results.md` 第 3 节。
 
 ## 结构检查
 
-- **JSON 可解析性**：17 份 test-prompts JSON（`evals/` 8 + 随 skill 副本 9）逐份解析，0 失败；每份均含 `skill` / `version` / `test_cases` 字段，`type` 取值仅 `should_trigger` / `should_not_trigger` / `edge_case` 三种，无未知取值；单份用例数 9 条（7 个晋级能力）或 22 条（入口路由）。
-- **frontmatter**：9 个 `SKILL.md`（`pack/` 8 个 + `single/` 1 个）全部以 `---` 开头，`name` 与 `description` 齐备，`description` 为块标量（`|`），0 异常。
+- **JSON 可解析性**：9 份 test-prompts JSON 逐份用 `json.load` 验证，**9 / 9 可解析、0 失败**；每份均含 `skill` / `version` / `test_cases` 字段，`type` 取值仅 `should_trigger` / `should_not_trigger` / `edge_case` 三种，无未知取值；单份用例数 9 条（7 个晋级能力）或 22 条（入口路由）。
+- **frontmatter**：9 个 `SKILL.md`（`pack/` 8 个 + `single/` 1 个）全部以 `---` 开头，`name` 与 `description` 齐备，`description` 为块标量（`|`），且 `name` 与所在目录名逐个一致，0 异常。
 - **六段完整性**：55 张 RIA++ 能力卡（`bundle/cards/` 16 + `single/game-theory-skill/references/capabilities/` 16 + `pack/game-theory-skill-router/references/capabilities/` 16 + `pack/` 7 个晋级 skill 的 `SKILL.md`）逐份检查 `R` / `I` / `A1` / `A2` / `E` / `B` 六个段标题，全部齐备，0 缺段。`single/game-theory-skill/SKILL.md` 与 `pack/game-theory-skill-router/SKILL.md` 是路由入口卡而非能力卡，不采用六段结构（检查中按预期排除，非缺陷）。
-- **candidates 资产**：`candidates/` 15 份文本（framework 148 / principle 189 / cases 94 / counter-examples 64 / glossary 40 = 535 条候选，按 `PIPELINE_STATE.md` 口径；实测 `principle.md` 含 191 个 id，含阶段 1.5 补漏的 p-190、p-191），另有 framework-C1–C5、principle-C1–C5 十份分块提取过程稿。无图片、无 PDF。
+- **candidates 资产**：`candidates/` 5 份文本（framework 148 / principle 191 / cases 94 / counter-examples 64 / glossary 40 = **537 条**候选，逐份统计 `- id:` 条目）。无图片、无 PDF。
+- **verified 资产**：`verified.md` 共 **338** 个条目块（framework 148 / principle 190；principle 池内 p-113 为 reference 未列入，故编号 p-01…p-191 中列出 190 条），与统计头一致。
 
 ## 结果
 
 - skills: 9（`single/` 1 个入口 + `pack/` 8 个入口；能力卡 16 张）
-- test_json: 17（`evals/` 8 + 随 skill 副本 9）
-- 通过情况（取自 `evals/test-results.md`，测试条件为干净 sub-agent 盲测：未参与蒸馏、未见预期答案）：
+- test_json: 9（`pack/` 8 + `single/` 1）
+- 通过情况（取自 [`test-results.md`](./test-results.md)，测试条件为干净 sub-agent 盲测：未参与蒸馏、未见预期答案）：
 
 | 项目 | 规模 | 结果 |
 |---|---|---|
@@ -38,8 +41,8 @@
 
 ## 可接入 darwin-skill 的后续动作
 
-1. **作为回归样本直接接入**：85 条用例已按能力分文件、带 `type` 与 `expected_behavior`，可直接作为 darwin-skill 的回归集。建议按 `type` 分层评估——诱饵（`should_not_trigger`）单独统计为零容忍指标，不与正向触发混算。
-2. **用随 skill 的副本复跑**：`pack/<slug>/test-prompts.json` 与 `evals/test-prompts__<slug>.json` 内容一致，盲测时只给 `prompt`，不提供 `type` / `expected_behavior` / `notes`；入口侧用 `single/game-theory-skill/test-prompts.json`（22 条路由套件）。
+1. **作为回归样本直接接入**：85 条去重用例已按能力分文件、带 `type` 与 `expected_behavior`，可直接作为 darwin-skill 的回归集。建议按 `type` 分层评估——诱饵（`should_not_trigger`）单独统计为零容忍指标，不与正向触发混算。
+2. **用随 skill 的副本复跑**：7 份 `pack/<slug>/test-prompts.json` 覆盖 7 个晋级能力，入口侧用 `pack/game-theory-skill-router/test-prompts.json` 或 `single/game-theory-skill/test-prompts.json`（两者内容相同，22 条路由套件）；盲测时只给 `prompt`，不提供 `type` / `expected_behavior` / `notes`。
 3. **已修缺陷作为回归锚点**：4 条近邻歧义（collusion/monitoring、collusion/competition、competition/collusion、commitment/reputation）应固化为必跑用例，防止后续改 description 时回退；阶段 4 回炉的 16 张卡补丁（如 reputation 的"末端瓦解窗口"读法、collusion 的"识别溢价性质"步骤）同理。
 4. **补样本量**：9 张 router 卡每卡仅 1 条，建议扩到每卡 3–5 条，并补 out_of_scope 边界题，这是当前最明显的覆盖缺口。
 5. **输出评测与触发评测分开统计**：16 份 `output.md` 的"输出契约要素齐备"核对与 test-prompts 的触发判定是两类能力，接入 darwin-skill 后应分列，不合并成单一通过率。

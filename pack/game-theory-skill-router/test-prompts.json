@@ -1,5 +1,5 @@
 {
- "skill": "game-theory-router",
+ "skill": "game-theory-skill-router",
  "version": "1.0",
  "test_cases": [
   {
@@ -146,7 +146,7 @@
    "id": "edge-01",
    "type": "edge_case",
    "prompt": "帮我用博弈论分析一下储能行业，看看竞争格局和投资机会。",
-   "expected_behavior": "路由到路由入口自身(game-theory-router)或 industry-game-modeling-foundations; 先补建模材料(参与人/竞争变量/时序/信息)再分派, 不直接跳到具体能力卡",
+   "expected_behavior": "路由到路由入口自身(game-theory-skill-router)或 industry-game-modeling-foundations; 先补建模材料(参与人/竞争变量/时序/信息)再分派, 不直接跳到具体能力卡",
    "notes": "泛泛请求: 缺少具体决策问题, 由入口承接并追问"
   },
   {

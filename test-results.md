@@ -23,7 +23,7 @@
 
 ## 3. 实际输出评测(16能力各1个代表任务, 16/16完成)
 
-任务与交付物: evals/outputs/<slug>/output.md (16份), 每份含结论/关键计算或判断表/触发条件/稳健度/执行自检。
+任务与交付物: 每个能力一份 output.md (16份, 归档于过程目录, 未纳入本仓库), 每份含结论/关键计算或判断表/触发条件/稳健度/执行自检。
 **16/16 完成, 全部通过"按E段执行且输出契约要素齐备"的核对**; 数值类结论抽查与书中定理一致(如δ*=0.75、二价报价=估值、MS门槛1/4、声誉阈值几何衰减)。
 
 执行中发现并已回炉修复的卡片缺陷(16张卡全部打补丁, 每卡附"修订记录(阶段4回炉)"):
@@ -59,11 +59,9 @@
 
 ## 附: 测试文件清单
 
-- evals/<slug>/test-prompts.json ×7 + evals/router/test-prompts.json
-- evals/blind-prompts-v2.json (干净题面) / blind-judgments-v2.json (盲判) / scored.json (逐条判分)
-- evals/regression-prompts.json / regression-judgments.json
-- evals/outputs/<slug>/output.md ×16
-- evals/baseline/{cement-collusion,auction-bid}/output.md ×2
+- 随 skill 发布的用例: `pack/<slug>/test-prompts.json` ×7(7个晋级能力) + `pack/game-theory-skill-router/test-prompts.json` + `single/game-theory-skill/test-prompts.json`(后两份内容相同, 22条路由套件)
+- 评分与判定记录: 本文件 `test-results.md`
+- 归档材料(留在过程目录, 未纳入本仓库): 干净题面 blind-prompts-v2.json、盲判 blind-judgments-v2.json、逐条判分 scored.json、回归 regression-prompts.json / regression-judgments.json、output.md ×16、baseline/{cement-collusion,auction-bid}/output.md ×2
 
 ## 6. 修复后复测(2026-10-28, 全量85条干净盲测)
 

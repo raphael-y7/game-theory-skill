@@ -124,7 +124,7 @@ Several book-specific decisions shaped the result: the original is a graduate-le
 
 ## Testing and verification
 
-`evals/` ships the test material together with the generation process: 8 case files, 85 cases, plus a per-item scoring record in `test-results.md`.
+The test material ships inside the skill directories: 9 `test-prompts.json` files holding 107 cases (85 after de-duplication, since the 22 routing cases are the same file in `single/` and `pack/`'s router), plus a per-item scoring record in [test-results.md](./test-results.md) at the repository root.
 
 - **Trigger cases, 63** (7 promoted cards × 9): 35 should_trigger, 21 should_not_trigger, 7 edge_case
 - **Routing reachability cases, 22** (`game-theory-skill-router`): 16 should_trigger (route-U01…U16, one per capability card), 4 should_not_trigger, 2 edge_case
@@ -137,138 +137,31 @@ Several book-specific decisions shaped the result: the original is a graduate-le
 
 ```text
 game-theory-skill/
-├── README.md                      ← the Chinese README
-├── README.en.md                   ← you are reading this
-├── LICENSE                        ← MIT
-├── INDEX.md                       ← skill map: destinations and dependencies of the 16 cards
-├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step breakdown, stage 0)
-├── verified.md                    ← triple-verification verdicts for 338 candidates
-├── TEST_SUMMARY.md                ← stage 4 stress-test summary (scope / structure checks / results)
-├── CANGJIE_ADAPTATION.md          ← cangjie adaptation notes (text state / distillation goals / evidence rules / usage boundaries)
-├── candidates/                    ← stage 1 raw candidate pool (audit material, not compiled)
-│   ├── framework.md               ← framework candidates, merged (148)
-│   ├── framework-C1.md            ← block extract C1 (34)
-│   ├── framework-C2.md            ← block extract C2 (36)
-│   ├── framework-C3.md            ← block extract C3 (24)
-│   ├── framework-C4.md            ← block extract C4 (31)
-│   ├── framework-C5.md            ← block extract C5 (28)
-│   ├── principle.md               ← principle/rule/computation candidates, merged (191, incl. p-190 and p-191)
-│   ├── principle-C1.md            ← block extract C1 (42)
-│   ├── principle-C2.md            ← block extract C2 (39)
-│   ├── principle-C3.md            ← block extract C3 (33)
-│   ├── principle-C4.md            ← block extract C4 (36)
-│   ├── principle-C5.md            ← block extract C5 (39)
-│   ├── cases.md                   ← case candidates (94)
-│   ├── counter-examples.md        ← counter-example and boundary candidates (64)
-│   └── glossary.md                ← glossary candidates (40)
-├── bundle/                        ← the bundle this repository was compiled from (audit material)
-│   ├── verified.yaml              ← the 16 canonical units (slug / intents / destination / promotion gate)
-│   ├── cards/                     ← the 16 capability card source files
-│   │   ├── auctions-bidding.md
-│   │   ├── bargaining-durable-pricing.md
-│   │   ├── collusion-price-war.md
-│   │   ├── commitment-deterrence-credibility.md
-│   │   ├── competition-pattern-comparative-statics.md
-│   │   ├── industry-game-modeling-foundations.md
-│   │   ├── information-structure-common-knowledge.md
-│   │   ├── long-run-relationship-assets.md
-│   │   ├── markov-state-variables.md
-│   │   ├── mechanism-reverse-engineering.md
-│   │   ├── monitoring-cooperation-discipline.md
-│   │   ├── multiple-equilibria-consensus.md
-│   │   ├── reputation-tough-talk.md
-│   │   ├── signal-reading-pbe.md
-│   │   ├── timing-war-attrition-preemption.md
-│   │   └── truthful-mechanisms-collective-action.md
-│   └── book/
-│       ├── overview.md            ← whole-book overview
-│       └── glossary.md            ← glossary
-├── single/                        ← single-entry mode
-│   └── game-theory-skill/
-│       ├── SKILL.md               ← entry: triggers + routing table + loading rules
-│       ├── BUILD_MANIFEST.json    ← build manifest with file hashes
-│       ├── test-prompts.json      ← entry trigger cases (22, identical to evals/test-prompts__game-theory-skill-router.json)
-│       └── references/
-│           ├── overview.md        ← whole-book overview
-│           ├── capability-index.md  ← full intent and keyword index
-│           ├── cheatsheet.md      ← decision-rule cheatsheet
-│           ├── glossary.md        ← glossary
-│           └── capabilities/      ← the 16 capability cards
-│               ├── auctions-bidding.md
-│               ├── bargaining-durable-pricing.md
-│               ├── collusion-price-war.md
-│               ├── commitment-deterrence-credibility.md
-│               ├── competition-pattern-comparative-statics.md
-│               ├── industry-game-modeling-foundations.md
-│               ├── information-structure-common-knowledge.md
-│               ├── long-run-relationship-assets.md
-│               ├── markov-state-variables.md
-│               ├── mechanism-reverse-engineering.md
-│               ├── monitoring-cooperation-discipline.md
-│               ├── multiple-equilibria-consensus.md
-│               ├── reputation-tough-talk.md
-│               ├── signal-reading-pbe.md
-│               ├── timing-war-attrition-preemption.md
-│               └── truthful-mechanisms-collective-action.md
-├── pack/                          ← multi-entry mode (compact pack)
-│   ├── BUILD_MANIFEST.json        ← build manifest with file hashes
-│   ├── capability-destinations.json  ← promotion destinations of the 16 cards
-│   ├── game-theory-skill-router/
-│   │   ├── SKILL.md               ← source routing entry
-│   │   ├── test-prompts.json      ← entry trigger cases (22, identical to evals/test-prompts__game-theory-skill-router.json)
-│   │   └── references/            ← the 16 cards + index, used internally by the router
-│   │       ├── overview.md
-│   │       ├── capability-index.md
-│   │       ├── cheatsheet.md
-│   │       ├── glossary.md
-│   │       └── capabilities/      ← the 16 capability cards
-│   │           ├── auctions-bidding.md
-│   │           ├── bargaining-durable-pricing.md
-│   │           ├── collusion-price-war.md
-│   │           ├── commitment-deterrence-credibility.md
-│   │           ├── competition-pattern-comparative-statics.md
-│   │           ├── industry-game-modeling-foundations.md
-│   │           ├── information-structure-common-knowledge.md
-│   │           ├── long-run-relationship-assets.md
-│   │           ├── markov-state-variables.md
-│   │           ├── mechanism-reverse-engineering.md
-│   │           ├── monitoring-cooperation-discipline.md
-│   │           ├── multiple-equilibria-consensus.md
-│   │           ├── reputation-tough-talk.md
-│   │           ├── signal-reading-pbe.md
-│   │           ├── timing-war-attrition-preemption.md
-│   │           └── truthful-mechanisms-collective-action.md
-│   ├── collusion-price-war/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (9)
-│   ├── signal-reading-pbe/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (9)
-│   ├── commitment-deterrence-credibility/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (9)
-│   ├── competition-pattern-comparative-statics/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (9)
-│   ├── timing-war-attrition-preemption/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (9)
-│   ├── long-run-relationship-assets/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (9)
-│   └── reputation-tough-talk/
-│       ├── SKILL.md
-│       └── test-prompts.json      ← trigger cases (9)
-└── evals/                         ← test cases and scoring record (85 cases)
-    ├── test-results.md            ← per-item scoring and the fix log
-    ├── test-prompts__collusion-price-war.json
-    ├── test-prompts__commitment-deterrence-credibility.json
-    ├── test-prompts__competition-pattern-comparative-statics.json
-    ├── test-prompts__game-theory-skill-router.json
-    ├── test-prompts__long-run-relationship-assets.json
-    ├── test-prompts__reputation-tough-talk.json
-    ├── test-prompts__signal-reading-pbe.json
-    └── test-prompts__timing-war-attrition-preemption.json
+├── README.md               ← Chinese version
+├── README.en.md            ← you are reading this
+├── LICENSE                 ← MIT
+├── BOOK_OVERVIEW.md        ← stage 0 output: Adler whole-book analysis
+├── INDEX.md                ← stage 3 output: skill map + dependencies
+├── verified.md             ← 338 units that passed triple verification
+├── TEST_SUMMARY.md         ← stage 4 output: stress-test summary
+├── CANGJIE_ADAPTATION.md   ← cangjie adaptation notes
+├── GITHUB_REPO.md          ← repository metadata
+├── test-results.md         ← test result records
+├── candidates/             ← stage 1 output: raw candidate pool
+│   ├── frameworks.md       ← framework and method candidates
+│   ├── principles.md       ← principle / rule / calculation candidates
+│   ├── cases.md            ← case candidates from the book
+│   ├── counter-examples.md ← counter-example and boundary candidates
+│   └── glossary.md         ← terminology candidates
+├── rejected/               ← stage 1.5 output: rejected units + reasons
+├── bundle/                 ← compilation source of truth
+│   ├── verified.yaml       ← capability metadata, criteria and destinations
+│   ├── cards/              ← capability card sources (six sections)
+│   └── book/               ← overview.md + glossary.md
+├── single/                 ← single-mode build (one entry + all capability cards)
+│   └── game-theory-skill/SKILL.md  ← entry: triggers + routing table + loading rules
+└── pack/                   ← pack-mode build (one router + 7 promoted skills)
+    └── */SKILL.md          ← 8 skills, each shipping a test-prompts.json
 ```
 
 ## How to use

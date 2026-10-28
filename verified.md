@@ -3199,7 +3199,7 @@
 
 ---
 
-## principle池(188条; p-113为reference不列于本文件, 见references.md)
+## principle池(190条; p-113为reference不列于本文件, 见references.md)
 
 - id: p-01
   title: 先判断博弈是否零和:多数商业博弈非零和、存在共同利益区
