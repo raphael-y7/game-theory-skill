@@ -143,6 +143,24 @@ game-theory-skill/
 ├── INDEX.md                       ← skill 地图：16 张卡的去向与依赖关系
 ├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
 ├── verified.md                    ← 338 条候选单元的三重验证结论
+├── TEST_SUMMARY.md                ← Stage 4 压力测试摘要（测试范围 / 结构检查 / 结果）
+├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明（文本状态 / 蒸馏目标 / 证据规则 / 使用边界）
+├── candidates/                    ← 阶段 1 原始候选池（审计材料，未进入编译）
+│   ├── framework.md               ← 框架与方法候选汇总（148 条）
+│   ├── framework-C1.md            ← 分块提取稿 C1（34 条）
+│   ├── framework-C2.md            ← 分块提取稿 C2（36 条）
+│   ├── framework-C3.md            ← 分块提取稿 C3（24 条）
+│   ├── framework-C4.md            ← 分块提取稿 C4（31 条）
+│   ├── framework-C5.md            ← 分块提取稿 C5（28 条）
+│   ├── principle.md               ← 原则/规则/计算候选汇总（191 条，含补漏 p-190、p-191）
+│   ├── principle-C1.md            ← 分块提取稿 C1（42 条）
+│   ├── principle-C2.md            ← 分块提取稿 C2（39 条）
+│   ├── principle-C3.md            ← 分块提取稿 C3（33 条）
+│   ├── principle-C4.md            ← 分块提取稿 C4（36 条）
+│   ├── principle-C5.md            ← 分块提取稿 C5（39 条）
+│   ├── cases.md                   ← 案例候选（c 族，94 条）
+│   ├── counter-examples.md        ← 反例与边界候选（x 族，64 条）
+│   └── glossary.md                ← 术语候选（40 条）
 ├── bundle/                        ← 编译本仓库所用的 Bundle（审计材料）
 │   ├── verified.yaml              ← 16 张卡的规范单元（slug / 意图 / 去向 / 晋级门）
 │   ├── cards/                     ← 16 张能力卡源文件
@@ -169,6 +187,7 @@ game-theory-skill/
 │   └── game-theory-skill/
 │       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
 │       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
+│       ├── test-prompts.json      ← 入口触发用例（22 条，与 evals/test-prompts__game-theory-skill-router.json 一致）
 │       └── references/
 │           ├── overview.md        ← 整书概览
 │           ├── capability-index.md  ← 完整意图与关键词索引
@@ -196,6 +215,7 @@ game-theory-skill/
 │   ├── capability-destinations.json  ← 16 张卡的晋级去向映射
 │   ├── game-theory-skill-router/
 │   │   ├── SKILL.md               ← 来源路由入口
+│   │   ├── test-prompts.json      ← 入口触发用例（22 条，与 evals/test-prompts__game-theory-skill-router.json 一致）
 │   │   └── references/            ← 16 张卡 + 索引，供 router 内部调用
 │   │       ├── overview.md
 │   │       ├── capability-index.md
@@ -219,19 +239,26 @@ game-theory-skill/
 │   │           ├── timing-war-attrition-preemption.md
 │   │           └── truthful-mechanisms-collective-action.md
 │   ├── collusion-price-war/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（9 条）
 │   ├── signal-reading-pbe/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（9 条）
 │   ├── commitment-deterrence-credibility/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（9 条）
 │   ├── competition-pattern-comparative-statics/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（9 条）
 │   ├── timing-war-attrition-preemption/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（9 条）
 │   ├── long-run-relationship-assets/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（9 条）
 │   └── reputation-tough-talk/
-│       └── SKILL.md
+│       ├── SKILL.md
+│       └── test-prompts.json      ← 触发用例（9 条）
 └── evals/                         ← 测试用例与评分记录（85 条）
     ├── test-results.md            ← 逐项评分与失败修复记录
     ├── test-prompts__collusion-price-war.json

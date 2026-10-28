@@ -1,0 +1,69 @@
+{
+ "skill": "competition-pattern-comparative-statics",
+ "version": "1.0",
+ "test_cases": [
+  {
+   "id": "should-trigger-01",
+   "type": "should_trigger",
+   "prompt": "第一次覆盖这个行业，两家巨头主要拼产能，成本降一成后价格和利润会怎么变？",
+   "expected_behavior": "调用competition-pattern-comparative-statics, 按E段还原博弈规则(竞争变量×时序×信息)→存在性检查→反应曲线求均衡→用交叉偏导符号判别涨价跟随还是份额争夺→比较静态推演, 输出新旧均衡对照与稳健度",
+   "notes": "正面场景: 新行业竞争模式判断与成本冲击传导(A2情境1/2)"
+  },
+  {
+   "id": "should-trigger-02",
+   "type": "should_trigger",
+   "prompt": "这个行业每次龙头提价，老二都跟着提，这种涨价能持续传导下去吗？",
+   "expected_behavior": "调用collusion-price-war: 问题问\"这种涨价能否持续传导\", 属重复互动中合作可持续性(δ阈值), 不是一次性竞争的方向判断; 竞争卡只做交叉偏导/均衡位置判断",
+   "notes": "正面场景: 涨价跟随vs份额争夺(A2情境3) | 2026-10-28 预期修正: 题面问持续性而非一次性方向, 按最终设计的近邻分流条款改归collusion(原预期与卡内规则矛盾)"
+  },
+  {
+   "id": "should-trigger-03",
+   "type": "should_trigger",
+   "prompt": "两家公司产品越来越像，毛利率却一直比同行高，这个差价合理吗？",
+   "expected_behavior": "调用competition-pattern-comparative-statics, 用差异化强度t解读可持续毛利(霍特林p*=c+t), 检查市场覆盖条件与同质化极限, 判断高毛利是差异化租金还是不可持续",
+   "notes": "正面场景: 差异化定价与毛利率可持续性(A2情境1)"
+  },
+  {
+   "id": "should-trigger-04",
+   "type": "should_trigger",
+   "prompt": "行业补贴退坡后，产能和价格会往哪个方向走？",
+   "expected_behavior": "调用competition-pattern-comparative-statics, 做E段步骤5比较静态推演: 参数冲击→重解反应函数→新均衡, 显式推演对手反应, 禁止单方外推; 输出方向与幅度量级",
+   "notes": "正面场景: 补贴/需求冲击传导(A2情境2)"
+  },
+  {
+   "id": "should-trigger-05",
+   "type": "should_trigger",
+   "prompt": "这个行业打的到底是价格战还是产能战，我该按哪种竞争逻辑做盈利预测？",
+   "expected_behavior": "调用competition-pattern-comparative-statics, 先还原竞争变量与时序, 选古诺/伯特兰/霍特林模型并检查存在性与稳定性, 再给盈利预测的均衡基准与区间",
+   "notes": "正面场景: 竞争模式判别与模型选择(A2情境1)"
+  },
+  {
+   "id": "should-not-trigger-01",
+   "type": "should_not_trigger",
+   "prompt": "几家大厂连续三年价格稳定，这种默契能一直维持吗？",
+   "expected_behavior": "应调用collusion-price-war, 不调用本能力; 该问题问重复互动中合作的可持续性, 不是一次性竞争的均衡位置",
+   "notes": "跨能力诱饵: 与collusion是真实近邻(一次性竞争vs重复合作)"
+  },
+  {
+   "id": "should-not-trigger-02",
+   "type": "should_not_trigger",
+   "prompt": "这个行业产能严重过剩，谁先关厂、多久能出清？",
+   "expected_behavior": "应调用timing-war-attrition-preemption, 不调用本能力; 该问题问退出时点与顺序, 不是产量/价格的水平竞争",
+   "notes": "跨能力诱饵: 与timing-war是真实近邻(水平竞争vs时点竞争)"
+  },
+  {
+   "id": "should-not-trigger-03",
+   "type": "should_not_trigger",
+   "prompt": "帮我推荐一本系统讲产业组织理论、适合投资研究入门的中文教材",
+   "expected_behavior": "不调用本能力; 这是书目推荐任务",
+   "notes": "完全无关场景"
+  },
+  {
+   "id": "edge-01",
+   "type": "edge_case",
+   "prompt": "行业里只有三家，但产品完全同质、产能又都过剩，价格几乎贴着成本，这算哪种竞争？",
+   "expected_behavior": "调用competition-pattern-comparative-statics并做模型边界判断: 同质价格竞争接近伯特兰(p=MC), 但产能约束使纯伯特兰结论不直接适用; 需还原产能约束与时序, 输出模型选择与均衡区间, 标注t→0极限失效",
+   "notes": "边界: 同质化+产能约束下伯特兰基准的适用性; 模型名不等于结论"
+  }
+ ]
+}

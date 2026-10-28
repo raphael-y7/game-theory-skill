@@ -1,0 +1,69 @@
+{
+  "skill": "commitment-deterrence-credibility",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "竞争对手说只要我们上新产品线，他就把产能翻倍打价格战，这话可信吗？",
+      "expected_behavior": "调用commitment-deterrence-credibility, 按E段把威胁还原为完整相机计划→切分适当子博弈→逐分支检验'兑现时执行是否仍最优'→判可信/空洞, 并给出承诺三要素(可观察/可验证/不可逆)判定",
+      "notes": "正面场景: 扩产/报复威胁可信性(A2情境1)"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "这家公司要投五十亿建一条不可逆的产线，是理性承诺还是管理层好大喜功？",
+      "expected_behavior": "调用commitment-deterrence-credibility, 做E段步骤5承诺价值评估(有无会反应的对手+可观察可验证+不可逆)与步骤6时间一致性检验, 分解公告中的效率故事与威慑故事",
+      "notes": "正面场景: 资本开支是承诺还是失误(A2情境2)"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "公司签了三年锁价长单还押了保证金，这算不算把自己绑死了？对竞争对手有什么影响？",
+      "expected_behavior": "调用commitment-deterrence-credibility, 检查锁价长单的可观察性与反悔成本, 评估其是否真的改变对手最优反应, 输出承诺价值与判断翻转的反场景清单",
+      "notes": "正面场景: 长期合同/锁价的承诺属性(A2情境2)"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "管理层说未来三年不做多元化，但账上现金越来越多，这个承诺靠什么保证？",
+      "expected_behavior": "调用commitment-deterrence-credibility, 做E段步骤6时间一致性检验: 把计划放进每期可自由重选的博弈, 判断是否会被自己推翻; 找不到规则锁定/沉没成本/声誉机制则按折价处理",
+      "notes": "正面场景: 管理层战略表态的时间一致性(A2情境3)"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "我们准备率先降价抢份额，但担心对手跟得更狠，先动手到底划不划算？",
+      "expected_behavior": "调用commitment-deterrence-credibility, 按E段步骤7判断对手反应方向(针对型跟进→先动不利; 退让型→先动有利), 并检查先动是否改变对手预期与子博弈均衡",
+      "notes": "正面场景: 先动利弊判断(A2情境4)"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "公司在股价低位突然回购，这是不是在暗示股价被低估？",
+      "expected_behavior": "应调用signal-reading-pbe, 不调用本能力; 该问题解读单次行动泄露的类型信息, 属于不完全信息信号, 不是完全信息下的威胁可信性",
+      "notes": "跨能力诱饵: 与signal-reading是真实近邻(承诺可信性vs信号解读)"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "两家都在亏钱扩产，谁会先撑不住退出，行业还要熬多久？",
+      "expected_behavior": "应调用timing-war-attrition-preemption, 不调用本能力; 该问题直接解退出时点与顺序, 不是评价威胁可不可信",
+      "notes": "跨能力诱饵: 与timing-war是真实近邻(承诺vs退出时点)"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "帮我查一下这家公司下周的股东大会在哪个酒店召开",
+      "expected_behavior": "不调用本能力; 这是信息查询任务",
+      "notes": "完全无关场景"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "对方在行业群里放话说要打价格战，但没有任何书面或产能动作，这种表态要不要当回事？",
+      "expected_behavior": "调用commitment-deterrence-credibility做降级判断: 不可观察/不可验证/可逆的表态不构成承诺, 按空洞威胁处理; 若对方有长期强硬类型先验, 转reputation-tough-talk评估声誉威慑",
+      "notes": "边界: 廉价口头威胁vs可信承诺; 承诺三要素缺项时只输出结构检查表"
+    }
+  ]
+}

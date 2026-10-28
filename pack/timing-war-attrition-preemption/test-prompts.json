@@ -1,0 +1,69 @@
+{
+  "skill": "timing-war-attrition-preemption",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "社区团购已经烧钱三年，几家平台谁先撤、还要熬多久？",
+      "expected_behavior": "调用timing-war-attrition-preemption, 按E段画L/F/B三曲线→归类(平稳消耗战/最终停止型)→用无差异条件p*=1/(1+v)或退出排序求解, 输出谁先退、战期预期与租金耗散程度",
+      "notes": "正面场景: 补贴战持续性与退出顺序(A2情境1)"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "光伏硅料产能严重过剩，大厂和小厂谁会先关产能？",
+      "expected_behavior": "调用timing-war-attrition-preemption, 按最终停止型求解: 比较固定成本负担定谁先无利可图→逆向递归定退出顺序→必查产能颗粒度(可分批关停则'大厂先退'不成立)",
+      "notes": "正面场景: 产能过剩行业出清节奏(A2情境2)"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "行业龙头说下一代产品明年二季度是最佳发布窗口，这个时点该怎么判断？",
+      "expected_behavior": "调用timing-war-attrition-preemption, 用抢先型求解: 均衡时点=租金首次非负的最小时刻, 检查ε-抢先条件, 并对'抢先者利润'做租金耗散折价",
+      "notes": "正面场景: 新品发布时机(A2情境3)"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "对手在固态电池上只领先我们一个身位，我们还要不要继续追？",
+      "expected_behavior": "调用timing-war-attrition-preemption, 检查ε-抢先条件(T₁+1<T₂时落后方理性放弃), 输出继续追的期望收益与退出建议",
+      "notes": "正面场景: 研发/专利竞赛的落后方决策(A2情境4)"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "新市场刚有正利润就挤进一堆玩家，先发者的圈地故事还值多少钱？",
+      "expected_behavior": "调用timing-war-attrition-preemption, 做租金耗散核算: 对称均衡期望收益是否归零, 对以抢先者利润为基准的估值打折, 并标注时间颗粒度敏感性",
+      "notes": "正面场景: 先发圈地故事的期权价值(A2情境5)"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "对手威胁说我们一扩产他就把价格打到成本以下，这个威胁可信吗？",
+      "expected_behavior": "应调用commitment-deterrence-credibility, 不调用本能力; 该问题只评价威胁可信性, 不解时点",
+      "notes": "跨能力诱饵: 与commitment是真实近邻(威胁可信性vs时点求解)"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "跟供应商谈独家供货拖了半年还没签，继续拖下去对我们有利吗？",
+      "expected_behavior": "应调用bargaining-durable-pricing, 不调用本能力; 该问题有交易条款与出价路径, 属于议价拖延, 不是无交易条款的纯消耗战",
+      "notes": "跨能力诱饵: 与bargaining是真实近邻(熬vs拖)"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这份行业研究报告精简成十页PPT，并配好图表",
+      "expected_behavior": "不调用本能力; 这是文档制作任务",
+      "notes": "完全无关场景"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "两家都宣称要退出这个亏损业务，但都只停了一条产线，这算真退出还是试探？",
+      "expected_behavior": "调用timing-war-attrition-preemption但先做颗粒度检查: 部分关停把一次性退出变成连续收缩, '大企业先退'结论不适用; 应改按逐级收缩分析, 只输出方向判断不给退出时点",
+      "notes": "边界: 产能可分拆时退出模型失效(Whinston); 公告措辞不等于全有全无退出"
+    }
+  ]
+}

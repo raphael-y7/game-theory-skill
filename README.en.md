@@ -143,6 +143,24 @@ game-theory-skill/
 ├── INDEX.md                       ← skill map: destinations and dependencies of the 16 cards
 ├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step breakdown, stage 0)
 ├── verified.md                    ← triple-verification verdicts for 338 candidates
+├── TEST_SUMMARY.md                ← stage 4 stress-test summary (scope / structure checks / results)
+├── CANGJIE_ADAPTATION.md          ← cangjie adaptation notes (text state / distillation goals / evidence rules / usage boundaries)
+├── candidates/                    ← stage 1 raw candidate pool (audit material, not compiled)
+│   ├── framework.md               ← framework candidates, merged (148)
+│   ├── framework-C1.md            ← block extract C1 (34)
+│   ├── framework-C2.md            ← block extract C2 (36)
+│   ├── framework-C3.md            ← block extract C3 (24)
+│   ├── framework-C4.md            ← block extract C4 (31)
+│   ├── framework-C5.md            ← block extract C5 (28)
+│   ├── principle.md               ← principle/rule/computation candidates, merged (191, incl. p-190 and p-191)
+│   ├── principle-C1.md            ← block extract C1 (42)
+│   ├── principle-C2.md            ← block extract C2 (39)
+│   ├── principle-C3.md            ← block extract C3 (33)
+│   ├── principle-C4.md            ← block extract C4 (36)
+│   ├── principle-C5.md            ← block extract C5 (39)
+│   ├── cases.md                   ← case candidates (94)
+│   ├── counter-examples.md        ← counter-example and boundary candidates (64)
+│   └── glossary.md                ← glossary candidates (40)
 ├── bundle/                        ← the bundle this repository was compiled from (audit material)
 │   ├── verified.yaml              ← the 16 canonical units (slug / intents / destination / promotion gate)
 │   ├── cards/                     ← the 16 capability card source files
@@ -169,6 +187,7 @@ game-theory-skill/
 │   └── game-theory-skill/
 │       ├── SKILL.md               ← entry: triggers + routing table + loading rules
 │       ├── BUILD_MANIFEST.json    ← build manifest with file hashes
+│       ├── test-prompts.json      ← entry trigger cases (22, identical to evals/test-prompts__game-theory-skill-router.json)
 │       └── references/
 │           ├── overview.md        ← whole-book overview
 │           ├── capability-index.md  ← full intent and keyword index
@@ -196,6 +215,7 @@ game-theory-skill/
 │   ├── capability-destinations.json  ← promotion destinations of the 16 cards
 │   ├── game-theory-skill-router/
 │   │   ├── SKILL.md               ← source routing entry
+│   │   ├── test-prompts.json      ← entry trigger cases (22, identical to evals/test-prompts__game-theory-skill-router.json)
 │   │   └── references/            ← the 16 cards + index, used internally by the router
 │   │       ├── overview.md
 │   │       ├── capability-index.md
@@ -219,19 +239,26 @@ game-theory-skill/
 │   │           ├── timing-war-attrition-preemption.md
 │   │           └── truthful-mechanisms-collective-action.md
 │   ├── collusion-price-war/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (9)
 │   ├── signal-reading-pbe/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (9)
 │   ├── commitment-deterrence-credibility/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (9)
 │   ├── competition-pattern-comparative-statics/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (9)
 │   ├── timing-war-attrition-preemption/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (9)
 │   ├── long-run-relationship-assets/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (9)
 │   └── reputation-tough-talk/
-│       └── SKILL.md
+│       ├── SKILL.md
+│       └── test-prompts.json      ← trigger cases (9)
 └── evals/                         ← test cases and scoring record (85 cases)
     ├── test-results.md            ← per-item scoring and the fix log
     ├── test-prompts__collusion-price-war.json
